@@ -11,21 +11,25 @@ struct DiceView: View {
     @State private var numberOgPips: Int = 1
     
     var body: some View {
-        VStack {
-            Image(systemName: "die.face.\(numberOgPips)")
-                .resizable()
-                .frame(width: 100, height: 100)
-            
-            Button("Roll") {
+            Button("Roll", systemImage: "die.face.\(numberOgPips).fill") {
                 withAnimation{
                     numberOgPips = Int.random(in: 1...6)
                 }
             }
-            .buttonStyle(.bordered)
-        }
+            .labelStyle(.iconOnly)
+            .aspectRatio(1, contentMode: .fit)
+            .foregroundStyle(.black, .white)
+            .buttonStyle(.plain)
+            .font(.system(size: 50))
     }
 }
 
 #Preview {
-    DiceView()
+    HStack {
+        DiceView()
+        DiceView()
+        DiceView()
+        DiceView()
+        DiceView()
+    }
 }
